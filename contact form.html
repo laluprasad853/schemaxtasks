@@ -1,0 +1,158 @@
+<html>
+<head>
+    <style>
+        table{
+			width: 500px;
+			position: relative;
+			top: 30%;
+			left: 50%;
+			background-color:grey;
+			transform: translate(-50%, -50%);
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 1px 1px 20px pink;
+		}
+        body{
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			font-family: sans-serif;
+			background-image: linear-gradient(120deg,#ff6b6b, #5f27cd);
+			min-height: 100vh;
+		}
+    </style>
+</head>
+<body>
+    <table id="s"> 
+        <tr>
+            <td>
+                <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                    <div>
+                        <label>Full Name</label><label class="validation-error hide" id="p"> Required</label>
+                        <input type="text" placeholder="full_name" id="fN">
+                    </div>
+                    <div>
+                        <label>EMP Code</label>
+                        <input type="number" placeholder="emp_code" id="empCode">
+                    </div>
+                    <div>
+                        <label>Salary</label>
+                        <input type="number" placeholder="emp_salary" id="salary">
+                    </div>
+                    <div>
+                        <label>City</label>
+                        <input type="text" placeholder="city" id="city">
+                    </div>
+                    <div  class="q">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </td>
+            <td>
+                <table class="list" id="el">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>EMP Code</th>
+                            <th>Salary</th>
+                            <th>City</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+<script>
+    var selectedRow = null
+
+function onFormSubmit() {
+    if (validate()) {
+        var formData = readFormData();
+        if (selectedRow == null)
+            insertNewRecord(formData);
+        else
+            updateRecord(formData);
+        resetForm();
+    }
+}
+
+function readFormData() {
+    var formData = {};
+    formData["fN"] = document.getElementById("fN").value;
+    formData["empCode"] = document.getElementById("empCode").value;
+    formData["salary"] = document.getElementById("salary").value;
+    formData["city"] = document.getElementById("city").value;
+    return formData;
+}
+
+function insertNewRecord(data) {
+    var table = document.getElementById("el").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    cell1 = newRow.insertCell(0);
+    cell1.innerHTML = data.fN;
+    cell2 = newRow.insertCell(1);
+    cell2.innerHTML = data.empCode;
+    cell3 = newRow.insertCell(2);
+    cell3.innerHTML = data.salary;
+    cell4 = newRow.insertCell(3);
+    cell4.innerHTML = data.city;
+    cell4 = newRow.insertCell(4);
+    cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+                       <a onClick="onDelete(this)">Delete</a>`;
+}
+
+function resetForm() {
+    document.getElementById("fN").value = "";
+    document.getElementById("empCode").value = "";
+    document.getElementById("salary").value = "";
+    document.getElementById("city").value = "";
+    selectedRow = null;
+}
+
+function onEdit(td) {
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("fN").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("empCode").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("salary").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("city").value = selectedRow.cells[3].innerHTML;
+}
+function updateRecord(formData) {
+    selectedRow.cells[0].innerHTML = formData.fN;
+    selectedRow.cells[1].innerHTML = formData.empCode;
+    selectedRow.cells[2].innerHTML = formData.salary;
+    selectedRow.cells[3].innerHTML = formData.city;
+}
+
+function onDelete(td) {
+    if (confirm('Are you sure to delete this record ?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("el").deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
+function validate() {
+
+    isValid = true;
+
+    if (document.getElementById("fN").value == "") {
+        isValid = false;
+
+        document.getElementById("p").classList.remove("hide");
+
+    } else {
+        isValid = true;
+
+        if (!document.getElementById("p").classList.contains("hide"))
+            document.getElementById("p").classList.add("hide");
+    }
+    return isValid;
+}
+</script>
+</body>
+
+</html> 
