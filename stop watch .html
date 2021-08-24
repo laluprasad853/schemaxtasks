@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>StopWatch</title>
+    <h1>STOP  &nbsp;WATCH</h1>
+    <script src="stopwatch.js"></script>
+    <style>
+    h1{
+        text-align: center;
+        background-color: #464646;
+        color: #fefefe;
+        border-radius: 5px;
+        margin: auto;
+        width: 250px;
+        padding: 12px;
+    }
+    #stopwatch {
+        background-color: #464646;
+        color: #fefefe;
+        border-radius: 5px;
+        margin: auto;
+        width: 355px;
+        padding: 12px;
+    }
+
+    .btn {
+        padding: 10px;
+        border: 0px;
+        border-radius: 50%;
+        font-size: 12pt;
+        background-color: #cccccc;
+        width: fit-content;
+        margin: 10px;
+        outline: none;
+    }
+
+    .btn:hover {
+        background-color: #ffffff;
+        cursor: pointer;
+    }
+
+    #timer {
+        padding: 10px;
+        font-size: 25pt;
+        color: #3b3b3b;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .time {
+        background-color: #d6d6d6;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .time:hover {
+        background-color: #fefefe;
+    }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+</head>
+
+<body>
+    <br><br><br>
+    <div id="stopwatch">
+        <div id="options" style="margin: auto;width: fit-content;">
+            <button class="btn" id="start" title="start" onclick="startTimer()">Start</button>
+            <button class="btn" id="stop" title="stop" onclick="stopTimer()">Stop</button>
+            <button class="btn" id="reset" title="reset" onclick="resetTimer()">Reset</button>
+            
+        </div>
+        <div id="timer">
+            <span class="time" id="hours">00</span>
+            <span class="time" id="minutes">00</span>
+            <span class="time" id="seconds">00</span>
+            <span class="time" id="milliseconds">00</span>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>
