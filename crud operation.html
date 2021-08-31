@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <body>
+            <div id = "table"></div>
+        </body>
+        <script>
+           fetch("https://ghibliapi.herokuapp.com/people")
+.then((data)=>{
+    return data.json();
+})
+.then ((rakesh)=>{
+    getDynamicTable(rakesh)
+});
+function getDynamicTable(rakesh){
+    const tab = document.createElement('table');
+    const tabHead = document.createElement('thead');
+    const tabBody = document.createElement('tbody');
+    const tableHeadRow = document.createElement('tr');
+    console.log(tab,tabHead,tabBody,tableHeadRow);
+    Object.keys(rakesh).forEach((key)=>{
+        if(key ==='Source code managers'){
+            const theadCel = document.createElement('th');
+            const cellText = document.createTextNode(key);
+            theadCel.appendChild(cellText);
+            tableHeadRow.appendChild(theadCel)
+            console.log("yo");
+        }else{
+            const theadCel = document.createElement('th');
+            const cellText = document.createTextNode(key);
+            console.log(theadCel,cellText);
+            theadCel.appendChild(cellText);
+            tableHeadRow.appendChild(theadCel);
+        }
+    });
+    rakesh.forEach((devBin) => {
+        const row = document.createElement('tr');
+        for( devData in devBin){
+            const cell = document.createElement('td');
+            const cellText = document.createTextNode(devBin[devData]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        }
+        tabBody.appendChild(row);
+    });
+    tab.appendChild(tableHeadRow);
+    tab.appendChild(tabBody);
+    tab.setAttribute("border","2");
+    document.querySelector('#table').innerHTML = "";
+    document.querySelector('#table').appendChild(tab);
+}
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
