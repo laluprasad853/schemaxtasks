@@ -1,0 +1,149 @@
+<html>  
+     </head>
+    <body align = "center">
+        <div id = "container">
+
+        <div id = "data">
+            <table align =" center" cellpadding="6">
+             <tr>
+                <td> First Name:</td>
+                <td>
+                   <input type = "text" id = "fullName"/>
+                <br>
+                </td>
+            </tr>
+                           
+            
+            <tr>
+                <td>Last Name:</td>
+                <td>
+                    <input type = "text" id = "lastname"/>
+                    <br>
+
+                </td>
+            </tr>
+            
+           <tr>
+               <td> Native: </td>
+               <td>
+                <input type = "text" id = "place"/>
+            
+
+                   <br>
+               </td>
+           </tr>
+        
+        
+            <tr>
+                <td>Qualification:</td>
+                <td>
+                    <input type = "text" id = "qualification"/>
+                    <br>
+                </td>
+            </tr>
+       <tr>
+           <td>
+            University:
+           </td>
+           <td>
+            <input type = "text" id = "universit"/>
+            <br>
+           </td>
+       </tr>
+           
+            
+            <tr>
+                <td> TechnicalSkills:</td>
+                <td>
+                    <input type = "text" id = "techskills"/>
+                    <br>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    PhoneNumber:
+                </td>
+                <td>
+                    <input type = "number" id = "phone"/>
+                    <br>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Experience:
+                </td>
+                <td>
+                    <input type = "text" id = "experience"/>
+                    <br>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <button id = "entry" align="center">submit</button>
+                </td>
+            </tr>
+            
+        </div>
+    </div>
+</table>
+<fieldset>
+        <table id = "dispaly" align="center">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Native</th>
+                <th>Qualification</th>
+                <th>University</th>
+                <th>TechnicalSkills</th>
+                <th>PhoneNumber</th>
+                <th>Experience</th> 
+            </tr>
+
+        </table>
+        </fieldset>
+        <script>
+        
+            var row = 1;
+            var entry = document.getElementById("entry");
+            entry.addEventListener("click",dispalyDynamically);
+            function dispalyDynamically(){
+                var first_name = document.getElementById("fullName").value;
+                var last_name = document.getElementById("lastname").value;
+                var native_place = document.getElementById("place").value;
+                var qualifiaction = document.getElementById("qualification").value;
+                var university = document.getElementById("universit").value;
+                var technicalSkills = document.getElementById("techskills").value;
+                var phonenumber = document.getElementById("phone").value;
+                var experience = document.getElementById("experience").value;
+                if(!first_name || !last_name || !native_place || !qualifiaction || !university || !technicalSkills || !phonenumber){
+                    alert("please fill the details");
+                    
+                    return;
+                }
+                var display = document.getElementById("dispaly");
+                var newRow = display.insertRow(row);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                var cell5 = newRow.insertCell(4);
+                var cell6 = newRow.insertCell(5);
+                var cell7 = newRow.insertCell(6);
+                var cell8 = newRow.insertCell(7);
+                cell1.innerHTML = first_name;
+                cell2.innerHTML = last_name;
+                cell3.innerHTML = native_place;
+                cell4.innerHTML = qualifiaction;
+                cell5.innerHTML = university;
+                cell6.innerHTML = technicalSkills;
+                cell7.innerHTML = phonenumber;
+                cell8.innerHTML = experience;
+                row++;
+                
+            }
+        </script>
+    </body>
+    </html>
